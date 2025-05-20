@@ -1,0 +1,50 @@
+1.reverse polish notation: problem number 150:
+normal:12-2+3
+rpn=12 2 - 3 + 
+Stack is used  
+each number is put in stack and performed the operation on the below 2 digits
+as stack is used first we will apply the for loop and visit the cell and use if statement in which we first consider the top element always and after considering we pop the element and push it through which operation is to be done , note is as the top most element is bigger we should use b-a and b/a so the operation doesn't take any problem so now we have to push the string to integer with the help of stoi operation and then print the stack at the else statement ,pop both the numbers and push them
+
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+       stack <int>s;
+       for(string x:tokens){
+        if(x=="+"){
+            int a=s.top();
+            s.pop();
+            int b=s.top();
+            s.pop();
+            s.push(a+b);
+
+        }
+         else if(x=="*"){
+            int a=s.top();
+            s.pop();
+            int b=s.top();
+            s.pop();
+            s.push(a*b);
+            
+        }
+         else if(x=="-"){
+            int a=s.top();
+            s.pop();
+            int b=s.top();
+            s.pop();
+            s.push(b-a);
+
+        }
+         else if(x=="/"){
+            int a=s.top();
+            s.pop();
+            int b=s.top();
+            s.pop();
+            s.push(b/a);
+
+        }
+        else
+         s.push(stoi(x));
+       }
+    return s.top();
+    }
+};
